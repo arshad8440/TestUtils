@@ -41,13 +41,8 @@ export default function TextForm(props) {
         
     }
     const copyText = ()=>{
-            let text = document.getElementById('MyText');
-            text.select();
-            navigator.clipboard.writeText(text.value);
-            document.getSelection().removeAllRanges() 
+            navigator.clipboard.writeText(text);
             props.showAlert("Text copy successfully", "success")
-        
-       
     }
     const removeExtraSpacess = ()=>{
             let newtext = text.split(/[ ]+/);
@@ -84,8 +79,8 @@ export default function TextForm(props) {
     </div>
     <div className='container my-4'>
         <h3>Your text summary here</h3>
-        <p>You enter the <b>{text.split(' ').filter((element)=>{return element.length !== 0}).length}</b> words and <b>{text.length}</b> characters</p>
-        <p><b>{0.008 * text.split(' ').filter((element)=>{return element.length !== 0}).length}</b> munites to take red this paragraph</p>
+        <p>You enter the <b>{text.split(/\s+/).filter((element)=>{return element.length !== 0}).length}</b> words and <b>{text.length}</b> characters</p>
+        <p><b>{0.008 * text.split(/\s+/).filter((element)=>{return element.length !== 0}).length}</b> munites to take red this paragraph</p>
         <h3 className='my-3'>Preview</h3>
         <p>{text.length > 0 ? text : "Nothing to preview !"}</p>
     </div>
